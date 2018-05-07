@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 
+/*
 Properties getGradleProperties() {
     def gradlePropsFile = file('../gradle.properties')
     def Properties gradleProps = new Properties()
@@ -12,16 +13,17 @@ Properties getGradleProperties() {
     }
     gradleProps;
 }
+*/
 
 android {
-    compileSdkVersion compileSdkVersionNum
-    buildToolsVersion buildToolVersionNum
-    def gradleProps = getGradleProperties()
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+//    def gradleProps = getGradleProperties()
     defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion targetSdkVersionNum
-        versionCode gradleProps['VERSION_CODE'].toInteger()
-        versionName gradleProps['VERSION_NAME']
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 20
+        versionName "1.0.20"
     }
     buildTypes {
         debug {
@@ -44,9 +46,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile 'net.i2p.android.ext:floatingactionbutton:1.9.0'
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation ('net.i2p.android.ext:floatingactionbutton:1.10.1'){
+        exclude module: "support-v4"
+    }
 }
 
-apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
+//apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
